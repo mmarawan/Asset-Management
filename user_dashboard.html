@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة العُهد الشخصية - لوحة المستخدم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f5f3ff',                            100: '#ede9fe',                            200: '#ddd6fe',                            300: '#c4b5fd',                            400: '#a78bfa',                            500: '#8b5cf6',                            600: '#7c3aed',                            700: '#6d28d9',                            800: '#5b21b6',                            900: '#4c1d95',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="fade-screen">
+        <!-- واجهة المستخدم العادي -->
+        <div id="user-dashboard" class="min-h-screen bg-gray-100">
+            <!-- Header -->
+            <header class="bg-primary-700 text-white shadow-md">
+                <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center text-center sm:text-right">
+                    <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-0">نظام إدارة العُهد الشخصية</h1>
+                    <div class="flex items-center space-x-2 sm:space-x-4 space-x-reverse">
+                        <span class="text-sm">مرحباً، أحمد محمد</span>
+                        <button id="logout-btn" class="bg-primary-800 hover:bg-primary-900 px-3 py-1 rounded-md text-xs sm:text-sm transition duration-300">
+                            تسجيل الخروج
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="container mx-auto px-4 py-4 sm:py-6">
+                <div class="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-4 sm:mb-6">
+                    <h2 class="text-lg sm:text-xl font-bold text-primary-700 mb-3 sm:mb-4">العُهد الخاصة بك</h2>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 text-sm">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="py-2 px-3 sm:px-4 border-b text-right">رقم العهدة</th>
+                                    <th class="py-2 px-3 sm:px-4 border-b text-right">نوع الجهاز</th>
+                                    <th class="py-2 px-3 sm:px-4 border-b text-right">الرقم التسلسلي</th>
+                                    <th class="py-2 px-3 sm:px-4 border-b text-right">تاريخ الاستلام</th>
+                                    <th class="py-2 px-3 sm:px-4 border-b text-right">الحالة</th>
+                                    <th class="py-2 px-3 sm:px-4 border-b text-right">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-3 sm:px-4 border-b">001</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">لابتوب</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">LT78945612</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">01/01/2023</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">سليم</span></td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">
+                                        <button class="report-issue-btn bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded-md text-xs">الإبلاغ عن مشكلة</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3 sm:px-4 border-b">002</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">جهاز كمبيوتر</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">PC45678923</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">15/03/2023</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">سليم</span></td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">
+                                        <button class="report-issue-btn bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded-md text-xs">الإبلاغ عن مشكلة</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3 sm:px-4 border-b">003</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">طابعة</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">PR12345678</td>
+                                    <td class="py-2 px-3 sm:px-4 border-b"><span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">تحت الصيانة</span></td>
+                                    <td class="py-2 px-3 sm:px-4 border-b">
+                                        <button class="bg-gray-300 text-gray-500 px-2 py-1 rounded-md text-xs cursor-not-allowed" disabled>تم الإبلاغ</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-primary-700 mb-3 sm:mb-4">البحث عن عهدة</h2>
+                        <div class="flex flex-col sm:flex-row">
+                            <input type="number" id="search-employee-id" class="flex-grow px-3 py-2 border border-gray-300 rounded-md sm:rounded-r-md sm:rounded-l-none focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm mb-2 sm:mb-0" placeholder="أدخل رقم العامل" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            <button id="search-btn" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md sm:rounded-l-md sm:rounded-r-none transition duration-300 text-sm">
+                                بحث
+                            </button>
+                        </div>
+                        <div id="search-results" class="mt-3 sm:mt-4 hidden">
+                            <h3 class="font-bold text-gray-700 mb-2 text-base">نتائج البحث:</h3>
+                            <div class="border rounded-md p-3 sm:p-4 text-sm">
+                                <p><span class="font-medium">الاسم:</span> محمد أحمد</p>
+                                <p><span class="font-medium">رقم العامل:</span> 123456</p>
+                                <p><span class="font-medium">القسم:</span> تكنولوجيا المعلومات</p>
+                                <p class="mt-2 font-medium">العهد:</p>
+                                <ul class="list-disc list-inside text-gray-700">
+                                    <li>لابتوب - HP ProBook - SN: 78945612</li>
+                                    <li>هاتف - iPhone 12 - SN: 45678923</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-primary-700 mb-3 sm:mb-4">الإبلاغ عن مشكلة</h2>
+                        <div class="mb-3 sm:mb-4">
+                            <label for="issue-device" class="block text-sm font-medium text-gray-700 mb-1">اختر الجهاز</label>
+                            <select id="issue-device" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+                                <option value="">-- اختر الجهاز --</option>
+                                <option value="1">لابتوب - LT78945612</option>
+                                <option value="2">جهاز كمبيوتر - PC45678923</option>
+                                <option value="3">طابعة - PR12345678</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 sm:mb-4">
+                            <label for="issue-type" class="block text-sm font-medium text-gray-700 mb-1">نوع المشكلة</label>
+                            <select id="issue-type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+                                <option value="">-- اختر نوع المشكلة --</option>
+                                <option value="hardware">مشكلة في الأجهزة</option>
+                                <option value="software">مشكلة في البرمجيات</option>
+                                <option value="network">مشكلة في الشبكة</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 sm:mb-4">
+                            <label for="issue-description" class="block text-sm font-medium text-gray-700 mb-1">وصف المشكلة</label>
+                            <textarea id="issue-description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm" placeholder="اكتب وصفاً مفصلاً للمشكلة"></textarea>
+                        </div>
+                        <button id="submit-issue" class="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 text-sm">
+                            إرسال البلاغ
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
