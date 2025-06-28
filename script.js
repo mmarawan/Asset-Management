@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (fullName && regEmployeeId && regPassword && (regPassword === confirmPassword)) {
                 showMessage('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.', 'success');
-                navigateWithTransition('login.html'); // Redirect to login after registration
+                navigateWithTransition('index.html'); // Redirect to login after registration
             } else {
                 showMessage('الرجاء ملء جميع الحقول والتأكد من تطابق كلمات المرور.', 'error');
             }
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener for the back to login button
         if (backToLoginBtn) {
             backToLoginBtn.addEventListener('click', () => {
-                navigateWithTransition('login.html'); // Redirect to login
+                navigateWithTransition('index.html'); // Redirect to login
             });
         }
     }
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Simulate password reset (in a real app, this would be an API call)
                     showMessage('تم تغيير كلمة المرور بنجاح!', 'success');
                     clearInterval(timerInterval); // Stop timer if active
-                    navigateWithTransition('login.html'); // Redirect to login
+                    navigateWithTransition('index.html'); // Redirect to login
                 } else {
                     showMessage('الرجاء التأكد من إدخال رمز التحقق الصحيح وتطابق كلمات المرور الجديدة.', 'error');
                 }
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             backToLoginFromForgotBtn.addEventListener('click', (e) => {
                 e.preventDefault(); // Prevent default link behavior
                 clearInterval(timerInterval); // Stop timer if active
-                navigateWithTransition('login.html'); // Redirect to login
+                navigateWithTransition('index.html'); // Redirect to login
             });
         }
 
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
             backToLoginVerificationBtn.addEventListener('click', (e) => {
                 e.preventDefault(); // Prevent default link behavior
                 clearInterval(timerInterval); // Stop timer if active
-                navigateWithTransition('login.html'); // Redirect to login
+                navigateWithTransition('index.html'); // Redirect to login
             });
         }
     }
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener for logout button
         logoutBtn.addEventListener('click', () => {
             showMessage('تم تسجيل الخروج بنجاح.', 'info');
-            navigateWithTransition('login.html'); // Redirect to login
+            navigateWithTransition('index.html'); // Redirect to login
         });
 
         // User Dashboard Search Functionality
@@ -837,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener for admin logout button
         adminLogoutBtn.addEventListener('click', () => {
             showMessage('تم تسجيل الخروج بنجاح.', 'info');
-            navigateWithTransition('login.html'); // Redirect to login
+            navigateWithTransition('index.html'); // Redirect to login
         });
 
         // Admin Dashboard Navigation (internal to this page)
