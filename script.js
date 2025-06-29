@@ -386,55 +386,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sample Devices Data (for inventory management)
     // Extended devicesData to match the expected total count for demonstration
+    // Sample Devices Data (for inventory management)
     const devicesData = [
         { id: '001', type: 'laptop', model: 'HP ProBook 450 G8', serial: 'LT78945612', status: 'in-use', user: 'أحمد محمد', notes: '' },
         { id: '002', type: 'desktop', model: 'Dell OptiPlex 7080', serial: 'PC45678923', status: 'in-use', user: 'محمد أحمد', notes: '' },
         { id: '003', type: 'printer', model: 'HP LaserJet Pro M404dn', serial: 'PR12345678', status: 'maintenance', user: 'علي محمود', notes: 'بحاجة إلى إصلاح رأس الطباعة.' },
-        { id: '004', type: 'laptop', model: 'Dell Latitude 5420', serial: 'DL54201234', status: 'available', user: '', notes: 'جهاز جديد في المخزون.' },
-        { id: '005', type: 'monitor', model: 'Samsung Odyssey G7', serial: 'SMG7890123', status: 'available', user: '', notes: '' },
-        { id: '006', type: 'printer', model: 'Epson EcoTank ET-2760', serial: 'EP27604567', status: 'in-use', user: 'فاطمة الزهراء', notes: '' },
-        { id: '007', type: 'desktop', model: 'HP Pavilion Desktop', serial: 'HPPV009876', status: 'defective', user: 'خالد السيد', notes: 'لا يعمل، مشكلة في اللوحة الأم.' },
-        { id: '008', type: 'laptop', model: 'MacBook Air M1', serial: 'MBAIR12345', status: 'in-use', user: 'ليلى فؤاد', notes: '' },
-        { id: '009', type: 'other', model: 'Projector XYZ', serial: 'PJXYZ7890', status: 'available', user: '', notes: 'جهاز عرض لغرفة الاجتماعات.' },
-        { id: '010', type: 'laptop', model: 'Lenovo ThinkPad X1', serial: 'LNTX198765', status: 'maintenance', user: 'سارة عبد الله', notes: 'بطارية لا تشحن.' },
-        { id: '011', type: 'desktop', model: 'Apple iMac 27-inch', serial: 'IMAC27ABCD', status: 'in-use', user: 'يوسف جمال', notes: '' },
-        { id: '012', type: 'printer', model: 'Brother HL-L2370DW', serial: 'BRHL2370EF', status: 'available', user: '', notes: '' },
-        { id: '013', type: 'monitor', model: 'LG UltraGear', serial: 'LGUG543210', status: 'in-use', user: 'نور الدين', notes: '' },
-        { id: '014', type: 'laptop', model: 'Microsoft Surface Laptop', serial: 'MSSL987654', status: 'available', user: '', notes: '' },
+        { id: '004', type: 'laptop', model: 'Dell Latitude 5420', serial: 'DL54201234', status: 'in-use', user: 'سارة عبد الله', notes: '' },
+        { id: '005', type: 'monitor', model: 'Samsung Odyssey G7', serial: 'SMG7890123', status: 'in-use', user: 'خالد السيد', notes: '' },
+        { id: '006', type: 'printer', model: 'Epson EcoTank ET-2760', serial: 'EP27604567', status: 'maintenance', user: 'ليلى فؤاد', notes: 'تحت الصيانة الدورية' },
+        { id: '007', type: 'desktop', model: 'HP Pavilion Desktop', serial: 'HPPV009876', status: 'in-use', user: 'يوسف جمال', notes: '' },
+        { id: '008', type: 'laptop', model: 'MacBook Air M1', serial: 'MBAIR12345', status: 'in-use', user: 'نور الدين', notes: '' }
     ];
 
     // Function to add dummy devices to reach a target count
-    function addDummyDevices(targetCount) {
-        const currentCount = devicesData.length;
-        if (currentCount >= targetCount) {
-            return; // Already have enough or more devices
-        }
-        const types = ['laptop', 'desktop', 'printer', 'monitor', 'other'];
-        const models = ['Model A', 'Model B', 'Model C', 'Model D'];
-        const statuses = ['available', 'in-use', 'maintenance', 'defective'];
-        const users = ['مستخدم 1', 'مستخدم 2', 'مستخدم 3', ''];
-
-        for (let i = currentCount; i < targetCount; i++) {
-            const newId = (i + 1).toString().padStart(3, '0');
-            const randomType = types[Math.floor(Math.random() * types.length)];
-            const randomModel = models[Math.floor(Math.random() * models.length)];
-            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-            const randomUser = randomStatus === 'in-use' ? users[Math.floor(Math.random() * (users.length -1))] : ''; // Assign user only if in-use
-
-            devicesData.push({
-                id: newId,
-                type: randomType,
-                model: randomModel,
-                serial: `SN${Math.floor(10000000 + Math.random() * 90000000)}`,
-                status: randomStatus,
-                user: randomUser,
-                notes: ''
-            });
-        }
-    }
-
-    // Call this to ensure devicesData has enough items for the report
-    addDummyDevices(124);
 
 
     // Elements for Edit Device Modal
@@ -709,12 +673,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         },
                         ticks: {
-                            callback: function(value) {
+                            callback: function (value) {
                                 if (Number.isInteger(value)) {
                                     return value;
                                 }
                             },
-                             font: {
+                            font: {
                                 family: 'Tajawal'
                             }
                         }
@@ -723,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         title: {
                             display: true,
                             text: 'الحالة',
-                             font: {
+                            font: {
                                 family: 'Tajawal',
                                 size: 14
                             }
@@ -912,40 +876,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Handle Add New Device Form Submission
-        if (saveNewDeviceBtn) {
-            saveNewDeviceBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default form submission
+        // في دالة حفظ الجهاز الجديد
+if (saveNewDeviceBtn) {
+    saveNewDeviceBtn.addEventListener('click', (e) => {
+        e.preventDefault();
 
-                const deviceType = document.getElementById('new-device-type').value;
-                const deviceModel = document.getElementById('new-device-model').value;
-                const deviceSerial = document.getElementById('new-device-serial').value;
-                const deviceStatus = document.getElementById('new-device-status').value;
-                const deviceUser = document.getElementById('new-device-user').value; // Optional
-                const deviceNotes = document.getElementById('new-device-notes').value; // Optional
+        const deviceType = document.getElementById('new-device-type').value;
+        const deviceModel = document.getElementById('new-device-model').value;
+        const deviceSerial = document.getElementById('new-device-serial').value;
+        const deviceStatus = document.getElementById('new-device-status').value;
+        const deviceUser = document.getElementById('new-device-user').value;
+        const receiptDate = document.getElementById('new-device-receipt-date').value;
+        const deviceNotes = document.getElementById('new-device-notes').value;
 
-                if (deviceType && deviceModel && deviceSerial && deviceStatus) {
-                    // Simulate adding a new device to our local data
-                    const newId = (devicesData.length + 1).toString().padStart(3, '0'); // Simple ID generation
-                    const newDevice = {
-                        id: newId,
-                        type: deviceType,
-                        model: deviceModel,
-                        serial: deviceSerial,
-                        status: deviceStatus,
-                        user: deviceUser,
-                        notes: deviceNotes
-                    };
-                    devicesData.push(newDevice); // Add to array
-                    displayInventory(); // Refresh the inventory table
+        if (deviceType && deviceModel && deviceSerial && deviceStatus && receiptDate) {
+            // Simulate adding a new device to our local data
+            const newId = (devicesData.length + 1).toString().padStart(3, '0');
+            const newDevice = {
+                id: newId,
+                type: deviceType,
+                model: deviceModel,
+                serial: deviceSerial,
+                status: deviceStatus,
+                user: deviceUser,
+                receiptDate: receiptDate, // إضافة تاريخ الاستلام
+                notes: deviceNotes
+            };
+            devicesData.push(newDevice);
+            displayInventory();
 
-                    showMessage('تم حفظ الجهاز الجديد بنجاح!', 'success');
-                    addDeviceModal.classList.add('hidden'); // Hide the modal
-                    addDeviceForm.reset(); // Clear the form
-                } else {
-                    showMessage('الرجاء ملء جميع الحقول المطلوبة لإضافة الجهاز.', 'error');
-                }
-            });
+            showMessage('تم حفظ الجهاز الجديد بنجاح!', 'success');
+            addDeviceModal.classList.add('hidden');
+            addDeviceForm.reset();
+        } else {
+            showMessage('الرجاء ملء جميع الحقول المطلوبة (النوع، الموديل، الرقم التسلسلي، الحالة، تاريخ الاستلام)', 'error');
         }
+    });
+}
 
         // Edit Device Modal Close Buttons Logic
         if (closeEditDeviceModalBtn) {
@@ -1075,7 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Optional: Live feedback for scan area
-            Quagga.onProcessed(function(result) {
+            Quagga.onProcessed(function (result) {
                 var drawingCtx = Quagga.canvas.ctx.getImageData(),
                     drawingCanvas = Quagga.canvas.dom.getImageData();
 
@@ -1084,16 +1051,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         result.boxes.filter(function (box) {
                             return box !== result.box;
                         }).forEach(function (box) {
-                            Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+                            Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: "green", lineWidth: 2 });
                         });
                     }
 
                     if (result.box) {
-                        Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+                        Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: "#00F", lineWidth: 2 });
                     }
 
                     if (result.codeResult && result.codeResult.code) {
-                        Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: "red", lineWidth: 3});
+                        Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: "red", lineWidth: 3 });
                     }
                 }
             });
@@ -1209,7 +1176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initial display of issues when admin dashboard is loaded
         // This will be called when the 'admin-dashboard' div itself becomes 'active' due to navigation
         if (document.getElementById('issues-section') && document.getElementById('issues-section').classList.contains('active')) {
-             displayIssues('all');
+            displayIssues('all');
         }
 
         // Initial display of inventory when admin dashboard is loaded and inventory section is active
@@ -1224,4 +1191,281 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCharts();
         }
     }
+});
+
+// عند النقر على زر التعديل في الجدول
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.edit-device-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const deviceId = this.getAttribute('data-device-id');
+            const deviceRow = document.querySelector(`tr[data-device-id="${deviceId}"]`);
+
+            // الحصول على بيانات الجهاز من الصف
+            const deviceType = deviceRow.cells[1].textContent;
+            const deviceModel = deviceRow.cells[2].textContent;
+            const deviceSerial = deviceRow.cells[3].textContent;
+            const deviceStatus = deviceRow.cells[4].querySelector('span').textContent;
+            const deviceUser = deviceRow.cells[5].textContent;
+
+            // تعبئة بيانات النموذج
+            document.getElementById('edit-device-id').value = deviceId;
+            document.getElementById('edit-device-id-display').textContent = deviceId;
+            document.getElementById('edit-device-type-display').textContent = deviceType;
+            document.getElementById('edit-device-model-display').textContent = deviceModel;
+            document.getElementById('edit-device-serial-display').textContent = deviceSerial;
+
+            // تعيين الحالة الحالية
+            const statusSelect = document.getElementById('edit-device-status');
+            const statusMap = {
+                'سليم': 'available',
+                'مستخدم': 'in-use',
+                'تحت الصيانة': 'maintenance',
+                'معطل': 'defective'
+            };
+            statusSelect.value = statusMap[deviceStatus] || 'available';
+
+            // تعيين المستخدم الحالي
+            document.getElementById('edit-device-user').value = deviceUser === '-' ? '' : deviceUser;
+
+            // عرض نافذة التعديل
+            document.getElementById('editDeviceModal').classList.remove('hidden');
+        });
+    });
+
+    // إغلاق نافذة التعديل
+    document.getElementById('closeEditDeviceModal').addEventListener('click', function () {
+        document.getElementById('editDeviceModal').classList.add('hidden');
+    });
+
+    document.getElementById('cancelEditDevice').addEventListener('click', function () {
+        document.getElementById('editDeviceModal').classList.add('hidden');
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // ربط حدث النقر على أزرار التعديل
+    document.querySelectorAll('.edit-device-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const deviceId = this.getAttribute('data-device-id');
+            const deviceRow = document.querySelector(`tr[data-device-id="${deviceId}"]`);
+
+            // الحصول على بيانات الجهاز
+            const deviceType = deviceRow.cells[1].textContent;
+            const deviceModel = deviceRow.cells[2].textContent;
+            const deviceSerial = deviceRow.cells[3].textContent;
+            const deviceStatus = deviceRow.cells[4].querySelector('span').textContent;
+            const deviceUser = deviceRow.cells[5].textContent;
+
+            // تعبئة النموذج
+            document.getElementById('edit-device-id').value = deviceId;
+            document.getElementById('edit-device-id-display').textContent = deviceId;
+            document.getElementById('edit-device-type-display').textContent = deviceType;
+            document.getElementById('edit-device-model-display').textContent = deviceModel;
+            document.getElementById('edit-device-serial-display').textContent = deviceSerial;
+
+            // تعيين الحالة (تقتصر على المستخدم أو تحت الصيانة)
+            const statusSelect = document.getElementById('edit-device-status');
+            statusSelect.value = deviceStatus === 'تحت الصيانة' ? 'maintenance' : 'in-use';
+
+            // تعيين المستخدم
+            document.getElementById('edit-device-user').value = deviceUser === '-' ? '' : deviceUser;
+
+            // عرض النافذة
+            document.getElementById('editDeviceModal').classList.remove('hidden');
+        });
+    });
+
+    // معالجة حفظ التعديلات
+    document.getElementById('editDeviceForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const deviceId = document.getElementById('edit-device-id').value;
+        const newStatus = document.getElementById('edit-device-status').value;
+        const newUser = document.getElementById('edit-device-user').value;
+
+        // هنا يجب إضافة كود AJAX لحفظ التعديلات في الخادم
+
+        // تحديث الجدول
+        const deviceRow = document.querySelector(`tr[data-device-id="${deviceId}"]`);
+
+        // تحديث الحالة
+        const statusSpan = deviceRow.cells[4].querySelector('span');
+        statusSpan.textContent = newStatus === 'maintenance' ? 'تحت الصيانة' : 'مستخدم';
+        statusSpan.className = newStatus === 'maintenance'
+            ? 'px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs'
+            : 'px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs';
+
+        // تحديث المستخدم
+        deviceRow.cells[5].textContent = newUser || '-';
+
+        // إغلاق النافذة
+        document.getElementById('editDeviceModal').classList.add('hidden');
+
+        // عرض رسالة نجاح
+        alert('تم تحديث حالة الجهاز بنجاح');
+    });
+
+    // أحداث إغلاق النافذة
+    document.getElementById('closeEditDeviceModal').addEventListener('click', function () {
+        document.getElementById('editDeviceModal').classList.add('hidden');
+    });
+
+    document.getElementById('cancelEditDevice').addEventListener('click', function () {
+        document.getElementById('editDeviceModal').classList.add('hidden');
+    });
+});
+// عند النقر على زر التعديل في الجدول
+document.querySelectorAll('.edit-device-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const deviceId = this.getAttribute('data-device-id');
+        const deviceRow = document.querySelector(`tr[data-device-id="${deviceId}"]`);
+
+        // الحصول على بيانات الجهاز من الصف
+        const deviceType = deviceRow.cells[1].textContent;
+        const deviceModel = deviceRow.cells[2].textContent;
+        const deviceSerial = deviceRow.cells[3].textContent;
+        const deviceStatus = deviceRow.cells[4].querySelector('span').textContent;
+        const deviceUser = deviceRow.cells[5].textContent;
+
+        // تعبئة بيانات النموذج
+        document.getElementById('edit-device-id').value = deviceId;
+        document.getElementById('edit-device-id-display').textContent = deviceId;
+        document.getElementById('edit-device-type-display').textContent = deviceType;
+        document.getElementById('edit-device-model-display').textContent = deviceModel;
+        document.getElementById('edit-device-serial-display').textContent = deviceSerial;
+
+        // تعيين الحالة الحالية
+        const statusSelect = document.getElementById('edit-device-status');
+        const statusMap = {
+            'متاح': 'available',
+            'مستخدم': 'in-use',
+            'تحت الصيانة': 'maintenance',
+            'معطل': 'defective'
+        };
+        statusSelect.value = statusMap[deviceStatus] || 'available';
+
+        // تعيين المستخدم الحالي
+        document.getElementById('edit-device-user').value = deviceUser === '-' ? '' : deviceUser;
+
+        // عرض نافذة التعديل
+        document.getElementById('editDeviceModal').classList.remove('hidden');
+    });
+});
+
+// إغلاق نافذة التعديل
+document.getElementById('closeEditDeviceModal').addEventListener('click', function () {
+    document.getElementById('editDeviceModal').classList.add('hidden');
+});
+
+document.getElementById('cancelEditDevice').addEventListener('click', function () {
+    document.getElementById('editDeviceModal').classList.add('hidden');
+});
+
+// معالجة حفظ التعديلات
+document.getElementById('editDeviceForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const deviceId = document.getElementById('edit-device-id').value;
+    const newStatus = document.getElementById('edit-device-status').value;
+    const newUser = document.getElementById('edit-device-user').value;
+
+    // هنا يجب إضافة كود لإرسال التعديلات إلى الخادم (AJAX)
+
+    // محاكاة تحديث الجدول بعد الحفظ
+    const deviceRow = document.querySelector(`tr[data-device-id="${deviceId}"]`);
+
+    // تحديث الحالة
+    const statusSpan = deviceRow.cells[4].querySelector('span');
+    const statusTextMap = {
+        'available': 'متاح',
+        'in-use': 'مستخدم',
+        'maintenance': 'تحت الصيانة',
+        'defective': 'معطل'
+    };
+    statusSpan.textContent = statusTextMap[newStatus] || 'متاح';
+
+    // تحديث لون الحالة
+    const statusClassMap = {
+        'available': 'bg-blue-100 text-blue-800',
+        'in-use': 'bg-green-100 text-green-800',
+        'maintenance': 'bg-yellow-100 text-yellow-800',
+        'defective': 'bg-red-100 text-red-800'
+    };
+    statusSpan.className = `px-2 py-1 rounded-full text-xs ${statusClassMap[newStatus] || 'bg-gray-100 text-gray-800'}`;
+
+    // تحديث المستخدم
+    deviceRow.cells[5].textContent = newUser || '-';
+
+    // إغلاق النافذة
+    document.getElementById('editDeviceModal').classList.add('hidden');
+
+    // عرض رسالة نجاح (يمكن استبدالها بـ Popup كما في المثال السابق)
+    alert('تم تحديث بيانات الجهاز بنجاح');
+});
+const statusMap = {
+    'مستخدم': 'in-use',
+    'تحت الصيانة': 'maintenance'
+};
+
+const statusTextMap = {
+    'in-use': 'مستخدم',
+    'maintenance': 'تحت الصيانة'
+};
+
+const statusClassMap = {
+    'in-use': 'bg-green-100 text-green-800',
+    'maintenance': 'bg-yellow-100 text-yellow-800'
+};
+// دالة البحث في المخزون
+function setupInventorySearch() {
+    const searchInput = document.getElementById('inventory-search');
+    const barcodeSearchBtn = document.getElementById('barcode-search-btn');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#inventory-table-body tr');
+
+            rows.forEach(row => {
+                const employeeId = row.cells[5].textContent.toLowerCase();
+                const serialNumber = row.cells[3].textContent.toLowerCase();
+
+                if (employeeId.includes(searchTerm) || serialNumber.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    if (barcodeSearchBtn) {
+        barcodeSearchBtn.addEventListener('click', function () {
+            // التنقل إلى قسم الباركود
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-white');
+                btn.classList.add('opacity-70', 'border-transparent');
+            });
+
+            document.querySelector('.admin-nav-btn[data-target="barcode"]').classList.add('active', 'border-white');
+            document.querySelector('.admin-nav-btn[data-target="barcode"]').classList.remove('opacity-70', 'border-transparent');
+
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.classList.remove('active');
+                section.classList.add('hidden');
+            });
+
+            document.getElementById('barcode-section').classList.add('active');
+            document.getElementById('barcode-section').classList.remove('hidden');
+
+            // بدء المسح تلقائياً
+            if (typeof initScanner === 'function') {
+                initScanner();
+            }
+        });
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    setupInventorySearch();
 });
